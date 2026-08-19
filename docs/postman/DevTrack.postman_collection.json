@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "4b38d7ce-3d99-4f1b-9a6c-devtrack",
     "name": "DevTrack API",
-    "description": "Requests for the Airtribe DevTrack Django assignment.",
+    "description": "Postman requests for the DevTrack Django API assignment.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -45,6 +45,58 @@
       ]
     },
     {
+      "name": "List all reporters",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/reporters/",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "reporters", ""]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 200 OK', function () { pm.response.to.have.status(200); });",
+              "pm.test('Response is an array', function () { pm.expect(pm.response.json()).to.be.an('array'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get reporter by ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/reporters/?id=1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "reporters", ""],
+          "query": [
+            {
+              "key": "id",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 200 OK', function () { pm.response.to.have.status(200); });",
+              "pm.test('Reporter ID is 1', function () { pm.expect(pm.response.json().id).to.eql(1); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
       "name": "Create critical issue",
       "request": {
         "method": "POST",
@@ -72,6 +124,58 @@
             "exec": [
               "pm.test('Status is 201 Created', function () { pm.response.to.have.status(201); });",
               "pm.test('Critical message is present', function () { pm.expect(pm.response.json().message).to.include('[URGENT]'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "List all issues",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/issues/",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "issues", ""]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 200 OK', function () { pm.response.to.have.status(200); });",
+              "pm.test('Response is an array', function () { pm.expect(pm.response.json()).to.be.an('array'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get issue by ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/issues/?id=1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "issues", ""],
+          "query": [
+            {
+              "key": "id",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 200 OK', function () { pm.response.to.have.status(200); });",
+              "pm.test('Issue ID is 1', function () { pm.expect(pm.response.json().id).to.eql(1); });"
             ]
           }
         }

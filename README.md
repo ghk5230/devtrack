@@ -142,13 +142,17 @@ python manage.py test tests
 
 The suite covers the entity validation rules, serialization, subclass behavior, reporter creation and lookup, issue creation, filtering, validation failures, and 404 responses. A record of the live API checks is available in [`docs/manual_test_results.md`](docs/manual_test_results.md).
 
-The repository includes a runnable Postman collection at [`docs/postman/DevTrack.postman_collection.json`](docs/postman/DevTrack.postman_collection.json), plus visible success and failure response evidence. The successful request returned `200 OK` for `GET /api/issues/?status=open`:
+The repository includes a runnable Postman collection at [`docs/postman/DevTrack.postman_collection.json`](docs/postman/DevTrack.postman_collection.json), plus visible success and failure response evidence. The successful reporter-list request returned `200 OK`:
 
-![Successful API response](docs/postman/success_get_open_issues.png)
+![Postman 200 OK response for listing reporters](docs/postman/postman_success_list_reporters_200.png)
+
+The successful issue-list request returned `200 OK` for `GET /api/issues/?status=open`:
+
+![Postman 200 OK response for listing issues](docs/postman/postman_success_list_issues_200.png)
 
 The failure request returned `404 Not Found` for `GET /api/issues/?id=999`:
 
-![Failure API response](docs/postman/failure_missing_issue.png)
+![Postman 404 Not Found response for a missing issue](docs/postman/postman_failure_missing_issue_404.png)
 
 ## Design decision
 
